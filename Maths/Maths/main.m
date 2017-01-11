@@ -11,15 +11,17 @@
 #import "InputHandler.h"
 #import "Scorekeeper.h"
 #import "QuestionManager.h"
+#import "QuestionFactory.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         ScoreKeeper *score = [[ScoreKeeper alloc]init];
         QuestionManager *manager = [[QuestionManager alloc]init];
+        QuestionFactory *factory = [[QuestionFactory alloc]init];
         while(YES){
-            AdditionQuestion *additionQuestion = [[AdditionQuestion alloc] init];
-            [manager.questions addObject:additionQuestion];
-            NSLog(@"%@", additionQuestion.question);
+            Question *ask = [factory generateRandomQuestion];
+            [manager.questions addObject:ask];
+            NSLog(@"%@", ask.question);
             
             NSString *input = [InputHandler userInput];
             if ([input isEqualToString:@"quit"]){
@@ -27,7 +29,7 @@ int main(int argc, const char * argv[]) {
             }
             
             NSInteger userAnswer = [input intValue];
-            if (userAnswer == additionQuestion.answer){
+            if (userAnswer == ask.answer){
                 ++score.right;
                 NSLog(@"Right!");
             }
@@ -37,7 +39,7 @@ int main(int argc, const char * argv[]) {
             }
             
             [score scoreLogger];
-            NSLog(@"%@",[manager timeOutput:additionQuestion.answerTime]);
+            NSLog(@"%@",[manager timeOutput:ask.answerTime]);
         }
         
     }

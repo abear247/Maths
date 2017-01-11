@@ -10,4 +10,8 @@
 
 @interface QuestionFactory : Question
 
+@property NSArray *questionSubclassNames;
+
+-(Question *)generateRandomQuestion;
+
 @end
