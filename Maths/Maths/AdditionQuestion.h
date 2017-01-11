@@ -11,9 +11,13 @@
 @interface AdditionQuestion : NSObject
 
 @property NSString *question;
-@property NSInteger answer;
+@property (nonatomic) NSInteger answer;
+@property (nonatomic) NSDate  *startTime;
+@property (nonatomic) NSDate  *endTime;
 
 -(instancetype)init;
+
+-(NSTimeInterval)answerTime;
 
 
 @end

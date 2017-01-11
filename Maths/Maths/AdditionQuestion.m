@@ -16,8 +16,22 @@
         NSInteger number2 = arc4random_uniform(90)+10;
         _question = [NSString stringWithFormat:@"%ld + %ld?", (long)number1, (long)number2];
         _answer = number1+number2;
+        _startTime = [NSDate date];
     }
     return self;
+}
+
+- (NSInteger)answer{
+    self.endTime = [NSDate date];
+    return _answer;
+}
+
+
+- (NSTimeInterval)answerTime{
+    NSDate *start = self.startTime;
+    NSDate *end = self.endTime;
+    NSTimeInterval time = round(2.0f*[start timeIntervalSinceDate:end])/2;
+    return time;
 }
 
 @end
