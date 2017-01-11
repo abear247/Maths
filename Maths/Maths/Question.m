@@ -6,9 +6,9 @@
 //  Copyright © 2017 Alex Bearinger. All rights reserved.
 //
 
-#import "AdditionQuestion.h"
+#import "Question.h"
 
-@implementation AdditionQuestion
+@implementation Question
 
 -(instancetype)init{
     if (self = [super init]) {
@@ -30,7 +30,7 @@
 - (NSTimeInterval)answerTime{
     NSDate *start = self.startTime;
     NSDate *end = self.endTime;
-    NSTimeInterval time = round(2.0f*[start timeIntervalSinceDate:end])/2;
+    NSTimeInterval time = [end timeIntervalSinceDate:start];
     return time;
 }
 

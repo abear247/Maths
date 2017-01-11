@@ -10,4 +10,9 @@
 
 @interface QuestionManager : NSObject
 
+@property int total;
+@property NSMutableArray *questions;
+
+-(NSString *)timeOutput:(NSTimeInterval)timeInterval;
+
 @end

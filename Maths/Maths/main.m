@@ -7,20 +7,22 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AdditionQuestion.h"
+#import "Question"
 #import "InputHandler.h"
 #import "Scorekeeper.h"
+#import "QuestionManager.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         ScoreKeeper *score = [[ScoreKeeper alloc]init];
+        QuestionManager *manager = [[QuestionManager alloc]init];
         while(YES){
             AdditionQuestion *additionQuestion = [[AdditionQuestion alloc] init];
+            [manager.questions addObject:additionQuestion];
             NSLog(@"%@", additionQuestion.question);
             
             NSString *input = [InputHandler userInput];
             if ([input isEqualToString:@"quit"]){
-                [score scoreLogger];
                 break;
             }
             
@@ -33,6 +35,9 @@ int main(int argc, const char * argv[]) {
                 ++score.wrong;
                 NSLog(@"Wrong!");
             }
+            
+            [score scoreLogger];
+            NSLog(@"%@",[manager timeOutput:additionQuestion.answerTime]);
         }
         
     }
