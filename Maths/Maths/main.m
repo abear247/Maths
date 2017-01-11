@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Question"
+#import "Question.h"
 #import "InputHandler.h"
 #import "Scorekeeper.h"
 #import "QuestionManager.h"
